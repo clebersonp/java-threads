@@ -10,8 +10,6 @@ public class TarefaNumero2 implements Runnable {
 
   @Override
   public void run() {
-    final String nome = Thread.currentThread().getName();
-    System.out.format("%s batendo na porta... %n-------------------%n", nome);
     this.banheiro.fazerNumero2();
   }
 }
