@@ -1,24 +1,20 @@
 package br.com.alura.threads.lista;
 
-import java.util.List;
-import java.util.Vector;
-
 public class Principal {
 
-    public static void main(final String[] args) throws InterruptedException {
+  public static void main(final String[] args) throws InterruptedException {
 
-        // final List<String> lista = new ArrayList<>(); nao sincronizado
-        // final List<String> lista = Collections.synchronizedList(new ArrayList<>());
-        final List<String> lista = new Vector<>(); // tbm e sincronizado
+    // final List<String> lista = new ArrayList<>(); nao sincronizado
+    // final List<String> lista = Collections.synchronizedList(new ArrayList<>());
+    // final List<String> lista = new Vector<>(); // tbm e sincronizado
+    final Lista lista = new Lista();
 
-        for (int i = 0; i < 10; i++) {
-            new Thread(new TarefaAdicionarElementos(lista), String.format("Thread %d", i)).start();
-        }
-
-        Thread.sleep(1500);
-
-        for (int i = 0; i < lista.size(); i++) {
-            System.out.println(lista.get(i));
-        }
+    System.out.println("Adicionando elementos no array....");
+    for (int i = 0; i < 10; i++) {
+      new Thread(new TarefaAdicionarElementos(lista), String.format("Thread %d", i)).start();
     }
+
+    new Thread(new TarefaImprimir(lista), "Thread Imprime Lista").start();
+
+  }
 }
